@@ -114,7 +114,8 @@ label: camera_XX-lidar
 ```
 
 **坐标系**：
-- 外参表示：**Lidar → Camera** 的变换
+- YAML 文件表示：**Camera → Lidar** 的变换（根据 label "camera_XX-lidar"）
+- 解析脚本会自动求逆，得到 **Lidar → Camera** 的变换（DA3 需要的格式）
 - 四元数格式：[x, y, z, w]（标量在最后）
 
 ---
