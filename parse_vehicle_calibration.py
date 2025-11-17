@@ -63,7 +63,7 @@ def load_camera_extrinsics(extrinsics_file):
         extrinsics_file: 外参文件路径
 
     Returns:
-        ext: (4, 4) 外参矩阵 (lidar-to-camera)
+        ext: (4, 4) 外参矩阵 (lidar-to-camera, 即 world-to-camera)
     """
     with open(extrinsics_file, 'r', encoding='utf-8') as f:
         data = yaml.safe_load(f)
@@ -88,10 +88,13 @@ def load_camera_extrinsics(extrinsics_file):
     # 转换为旋转矩阵
     R = quaternion_to_rotation_matrix(quat)
 
-    # 组合成4x4齐次变换矩阵
-    ext = np.eye(4)
-    ext[:3, :3] = R
-    ext[:3, 3] = trans
+    # 组合成4x4齐次变换矩阵 (camera-to-lidar, 根据label)
+    c2l = np.eye(4)
+    c2l[:3, :3] = R
+    c2l[:3, 3] = trans
+
+    # DA3 需要 lidar-to-camera (world-to-camera)，所以需要求逆
+    ext = np.linalg.inv(c2l)
 
     return ext
 

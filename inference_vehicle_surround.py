@@ -308,7 +308,7 @@ def main():
     print("-" * 70)
 
     visualize_surround_view(
-        images=images,
+        images=images_for_inference,  # 使用去畸变后的图像
         depth_maps=prediction.depth,
         camera_names=camera_names,
         save_dir=OUTPUT_DIR / "visualizations"

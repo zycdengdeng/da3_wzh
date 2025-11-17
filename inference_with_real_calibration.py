@@ -388,7 +388,7 @@ def main():
     print("-" * 70)
 
     visualize_results(
-        images=images,
+        images=images_for_inference,  # 使用去畸变后的图像（如果开启了去畸变）
         depth_maps=prediction.depth,
         sky_masks=prediction.sky,
         conf_maps=prediction.conf,
