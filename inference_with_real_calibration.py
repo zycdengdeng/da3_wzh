@@ -365,10 +365,13 @@ def main():
             align_to_input_ext_scale=True,
             export_dir=str(OUTPUT_DIR / "pointcloud"),
             export_format="glb",
-            conf_thresh_percentile=40.0,   # 置信度阈值百分位（去除低置信度点）
-            num_max_points=2_000_000,      # 最大点数（2百万点）
+            conf_thresh_percentile=5.0,    # 降低置信度阈值（保留更多远距离点）
+            num_max_points=5_000_000,      # 增加最大点数到500万
             show_cameras=True,             # 在点云中显示相机位置
         )
+
+        print(f"  置信度阈值: 5% (保留95%的点)")
+        print(f"  最大点数: 500万")
 
         print(f"\n✓ 3D 点云生成完成!")
         print(f"  - 点云文件: {OUTPUT_DIR / 'pointcloud' / 'prediction.glb'}")
