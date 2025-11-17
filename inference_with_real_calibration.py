@@ -247,8 +247,8 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     # 推理配置
-    UNDISTORT_IMAGES = True  # 是否对图像去畸变
-    PROCESS_RES = 504        # 处理分辨率
+    UNDISTORT_IMAGES = False  # 是否对图像去畸变（您的图像已经去过畸变）
+    PROCESS_RES = 504         # 处理分辨率
 
     # ========== 加载相机参数 ==========
     print("\n" + "-" * 70)
@@ -335,9 +335,10 @@ def main():
     print(f"  - 处理分辨率: {PROCESS_RES}")
     print(f"  - 使用相机参数: 是")
     print(f"  - 图像去畸变: {'是' if UNDISTORT_IMAGES else '否'}")
-    print(f"  - 模型会自动输出: 深度图、天空分割、置信度图")
+    print(f"  - 输出格式: NPZ (深度数据) + GLB (3D点云)")
 
     try:
+        # 先生成深度数据（NPZ格式）
         prediction = model.inference(
             image=images_for_inference,
             extrinsics=extrinsics,
@@ -348,13 +349,31 @@ def main():
             export_format="mini_npz",
         )
 
-        print(f"\n✓ 推理完成!")
+        print(f"\n✓ 深度推理完成!")
         print(f"  - 深度图 shape: {prediction.depth.shape}")
         print(f"  - 是否度量深度: {bool(prediction.is_metric)}")
         if prediction.sky is not None:
             print(f"  - 天空分割 shape: {prediction.sky.shape}")
         if prediction.conf is not None:
             print(f"  - 置信度图 shape: {prediction.conf.shape}")
+
+        # 生成 3D 点云（GLB格式）
+        print(f"\n正在生成 3D 点云...")
+        prediction_pointcloud = model.inference(
+            image=images_for_inference,
+            extrinsics=extrinsics,
+            intrinsics=intrinsics,
+            process_res=PROCESS_RES,
+            align_to_input_ext_scale=True,
+            export_dir=str(OUTPUT_DIR / "pointcloud"),
+            export_format="glb",
+            conf_thresh_percentile=40.0,   # 置信度阈值百分位（去除低置信度点）
+            num_max_points=2_000_000,      # 最大点数（2百万点）
+            show_cameras=True,             # 在点云中显示相机位置
+        )
+
+        print(f"\n✓ 3D 点云生成完成!")
+        print(f"  - 点云文件: {OUTPUT_DIR / 'pointcloud' / 'prediction.glb'}")
 
     except Exception as e:
         print(f"✗ 推理失败: {e}")
@@ -409,16 +428,19 @@ def main():
 
     print(f"\n输出目录: {OUTPUT_DIR}")
     print("\n生成的文件:")
-    print(f"  - DA3 输出: {OUTPUT_DIR / 'da3_output' / 'prediction.npz'}")
+    print(f"  - DA3 深度数据: {OUTPUT_DIR / 'da3_output' / 'prediction.npz'}")
+    print(f"  - 3D 点云 (GLB): {OUTPUT_DIR / 'pointcloud' / 'prediction.glb'}")
     print(f"  - 结果可视化: {OUTPUT_DIR / 'visualizations' / 'result_*.png'}")
     print(f"  - 统计报告: {report_path}")
     if UNDISTORT_IMAGES:
         print(f"  - 去畸变图像: {OUTPUT_DIR / 'undistorted_images'}")
 
     print("\n提示:")
-    print("  1. 查看 visualizations/ 目录查看可视化结果")
-    print("  2. 查看 depth_statistics_report.txt 了解详细统计")
-    print("  3. 使用 prediction.npz 文件进行后续处理")
+    print("  1. 使用 Blender/MeshLab/Online Viewer 打开 prediction.glb 查看 3D 点云")
+    print("  2. 查看 visualizations/ 目录查看 2D 可视化结果")
+    print("  3. 查看 depth_statistics_report.txt 了解详细统计")
+    print("  4. 使用 prediction.npz 文件进行后续处理")
+    print("\n在线查看器: https://gltf-viewer.donmccurdy.com/")
 
 
 if __name__ == "__main__":
