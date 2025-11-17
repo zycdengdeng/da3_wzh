@@ -335,8 +335,7 @@ def main():
     print(f"  - 处理分辨率: {PROCESS_RES}")
     print(f"  - 使用相机参数: 是")
     print(f"  - 图像去畸变: {'是' if UNDISTORT_IMAGES else '否'}")
-    print(f"  - 推理度量深度: 是")
-    print(f"  - 推理天空分割: 是")
+    print(f"  - 模型会自动输出: 深度图、天空分割、置信度图")
 
     try:
         prediction = model.inference(
@@ -344,13 +343,9 @@ def main():
             extrinsics=extrinsics,
             intrinsics=intrinsics,
             process_res=PROCESS_RES,
-            infer_metric=True,         # 度量深度
-            infer_sky=True,            # 天空分割
+            align_to_input_ext_scale=True,  # 对齐到输入外参尺度
             export_dir=str(OUTPUT_DIR / "da3_output"),
             export_format="mini_npz",
-            export_depth_vis=True,     # 导出深度可视化
-            export_sky_vis=True,       # 导出天空可视化
-            export_conf_vis=True,      # 导出置信度可视化
         )
 
         print(f"\n✓ 推理完成!")

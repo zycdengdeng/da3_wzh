@@ -131,8 +131,7 @@ def inference_with_camera_pose(
         process_res=504,  # 处理分辨率
         export_dir=output_dir,
         export_format="mini_npz",  # 导出格式：mini_npz, npz, glb, gs_ply
-        infer_metric=True,  # 推理度量深度
-        infer_sky=True,  # 推理天空分割
+        align_to_input_ext_scale=True,  # 对齐到输入外参尺度
         infer_gs=False,  # 是否推理高斯点云（需要 da3-giant 模型）
     )
 

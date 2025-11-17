@@ -228,12 +228,9 @@ def main():
         extrinsics=extrinsics,
         intrinsics=intrinsics,
         process_res=504,
-        infer_metric=True,         # 度量深度（真实尺度）
-        infer_sky=True,            # 天空分割
+        align_to_input_ext_scale=True,  # 对齐到输入外参尺度
         export_dir=str(OUTPUT_DIR / "with_camera_params"),
         export_format="mini_npz",
-        export_depth_vis=True,     # 自动导出深度可视化
-        export_sky_vis=True,       # 自动导出天空可视化
     )
 
     print(f"✓ 推理完成")
@@ -249,10 +246,8 @@ def main():
         extrinsics=None,           # 不提供
         intrinsics=None,           # 不提供
         process_res=504,
-        infer_metric=True,
         export_dir=str(OUTPUT_DIR / "auto_estimate"),
         export_format="mini_npz",
-        export_depth_vis=True,
     )
 
     print(f"✓ 推理完成")
