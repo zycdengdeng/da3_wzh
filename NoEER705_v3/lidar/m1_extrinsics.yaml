@@ -1,0 +1,11 @@
+transform:
+  rotation:
+    x: 0.003273
+    y: 0.001023
+    z: 0.010845
+    w: 0.999935
+  translation:
+    x: 0.393614
+    y: -0.023796
+    z: -0.307919
+label: lidar_02-lidar_01

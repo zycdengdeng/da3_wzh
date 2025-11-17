@@ -1,0 +1,11 @@
+transform:
+  rotation:
+    x: 0.013026
+    y: -0.012111
+    z: 0.693668
+    w: 0.720075
+  translation:
+    x: 0.003551
+    y: 1.630648
+    z: 1.262754
+label: lidar_01-imu

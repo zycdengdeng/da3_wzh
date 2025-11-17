@@ -1,0 +1,11 @@
+frame_id: conti408_front
+transform:
+  rotation:
+    x: 0
+    y: 0
+    z: 0.7003644541262014
+    w: 0.7137854239170957
+  translation:
+    x: -0.31
+    y: 3.975
+    z: -0.205

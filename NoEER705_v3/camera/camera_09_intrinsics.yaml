@@ -1,0 +1,19 @@
+sn: images
+type: fisheye
+distortion_model: plumb_bob
+width: 1920
+height: 1080
+fisheye:
+  cam2world: []
+  world2cam: []
+  center:
+    x: 0.000000
+    y: 0.000000
+  affine:
+    c: 0.000000
+    d: 0.000000
+    e: 0.000000
+  focallength: 0.000000
+K: [469.592050, 0, 971.208004, 0, 470.066158, 549.104732, 0, 0, 1.000000]
+D: [0.053702, -0.005136, -0.001887, 0.000269]
+aver_error: 0.1361263553800253

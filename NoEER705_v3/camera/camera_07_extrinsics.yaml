@@ -1,0 +1,11 @@
+transform:
+  rotation:
+    x: -0.485389
+    y: -0.499630
+    z: 0.513380
+    w: 0.501207
+  translation:
+    x: -1.898077
+    y: -0.022695
+    z: -0.394986
+label: camera_07-lidar
