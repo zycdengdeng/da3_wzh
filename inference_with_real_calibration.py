@@ -35,7 +35,7 @@ def load_camera_params(npz_file):
 
 def undistort_images(images, intrinsics, distortions):
     """
-    对图像进行去畸变处理
+    对图像进行去畸变处理（如果启用）
 
     Args:
         images: 图像列表
@@ -44,6 +44,9 @@ def undistort_images(images, intrinsics, distortions):
 
     Returns:
         undistorted_images: 去畸变后的图像列表
+
+    Note:
+        直接使用 cv2.undistort(img, K, D) 而不是 getOptimalNewCameraMatrix
     """
     undistorted_images = []
 
@@ -54,19 +57,16 @@ def undistort_images(images, intrinsics, distortions):
         else:
             img_np = img
 
-        # 去畸变
         K = intrinsics[i]
         dist = distortions[i]
 
-        h, w = img_np.shape[:2]
-        new_K, roi = cv2.getOptimalNewCameraMatrix(K, dist, (w, h), 1, (w, h))
-
-        undist_img = cv2.undistort(img_np, K, dist, None, new_K)
+        # 直接使用 cv2.undistort，不使用 getOptimalNewCameraMatrix
+        undist_img = cv2.undistort(img_np, K, dist)
 
         # 转换回PIL
         undistorted_images.append(Image.fromarray(undist_img))
 
-        print(f"  图像 {i} 去畸变完成 (ROI: {roi})")
+        print(f"  图像 {i} 去畸变完成")
 
     return undistorted_images
 

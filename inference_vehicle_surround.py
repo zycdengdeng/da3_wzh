@@ -34,7 +34,7 @@ def load_vehicle_camera_params(npz_file):
     return extrinsics, intrinsics, distortions, camera_names, image_sizes
 
 
-def undistort_images(images, intrinsics, distortions):
+def undistort_images(images, intrinsics, distortions, camera_names):
     """
     对图像进行去畸变处理
 
@@ -42,6 +42,7 @@ def undistort_images(images, intrinsics, distortions):
         images: 图像列表
         intrinsics: (N, 3, 3) 内参矩阵
         distortions: (N, 5) 畸变系数
+        camera_names: 相机名称列表
 
     Returns:
         undistorted_images: 去畸变后的图像列表
@@ -55,19 +56,20 @@ def undistort_images(images, intrinsics, distortions):
         else:
             img_np = img
 
-        # 去畸变
         K = intrinsics[i]
         dist = distortions[i]
 
-        h, w = img_np.shape[:2]
-        new_K, roi = cv2.getOptimalNewCameraMatrix(K, dist, (w, h), 1, (w, h))
-
-        undist_img = cv2.undistort(img_np, K, dist, None, new_K)
+        # 检查是否为 camera_01 (畸变参数异常)
+        if 'camera_01' in camera_names[i]:
+            print(f"  相机 {i+1} ({camera_names[i]}): 畸变参数异常，跳过去畸变")
+            undist_img = img_np.copy()
+        else:
+            # 直接使用 cv2.undistort，不使用 getOptimalNewCameraMatrix
+            undist_img = cv2.undistort(img_np, K, dist)
+            print(f"  相机 {i+1} ({camera_names[i]}): 去畸变完成")
 
         # 转换回PIL
         undistorted_images.append(Image.fromarray(undist_img))
-
-        print(f"  图像 {i+1} 去畸变完成 (ROI: {roi})")
 
     return undistorted_images
 
@@ -215,7 +217,7 @@ def main():
         print("图像去畸变处理")
         print("-" * 70)
 
-        images_undistorted = undistort_images(images, intrinsics, distortions)
+        images_undistorted = undistort_images(images, intrinsics, distortions, camera_names)
 
         # 保存去畸变后的图像
         undist_dir = OUTPUT_DIR / "undistorted_images"
