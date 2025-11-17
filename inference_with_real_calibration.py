@@ -153,7 +153,7 @@ def create_depth_statistics_report(depth_maps, sky_masks, camera_names, save_pat
         camera_names: 相机名称列表
         save_path: 报告保存路径
     """
-    with open(save_path, 'w') as f:
+    with open(save_path, 'w', encoding='utf-8') as f:
         f.write("=" * 70 + "\n")
         f.write("深度估计统计报告\n")
         f.write("=" * 70 + "\n\n")
@@ -232,15 +232,13 @@ def main():
     CAMERA_IDS = ["0", "3", "6", "9"]
 
     # 模型路径
-    # 尝试使用移动后的本地路径
-    MODEL_PATH = str(Path.home() / ".cache/huggingface/hub/models--depth-anything--DA3NESTED-GIANT-LARGE")
+    MODEL_PATH = "/home/zyc/.cache/huggingface/hub/models--depth-anything--DA3NESTED-GIANT-LARGE"
 
-    # 如果上述路径不存在，尝试其他位置
+    # 检查路径是否存在
     if not Path(MODEL_PATH).exists():
-        print(f"警告: 本地路径不存在: {MODEL_PATH}")
-        # 尝试从 Hugging Face Hub 下载
-        MODEL_PATH = "depth-anything/DA3NESTED-GIANT-LARGE"
-        print(f"将尝试从 Hugging Face Hub 加载: {MODEL_PATH}")
+        print(f"警告: 模型路径不存在: {MODEL_PATH}")
+        print(f"请检查模型文件位置或运行: python check_model_files.py")
+        return
 
     # 输出目录
     OUTPUT_DIR = Path("./output/real_calibration_inference")

@@ -234,7 +234,7 @@ def main():
 
     # ========== 导出为文本格式（便于检查） ==========
     txt_path = OUTPUT_DIR / "camera_params.txt"
-    with open(txt_path, 'w') as f:
+    with open(txt_path, 'w', encoding='utf-8') as f:
         f.write("相机参数\n")
         f.write("=" * 70 + "\n\n")
 
