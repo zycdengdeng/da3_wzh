@@ -232,9 +232,15 @@ def main():
     CAMERA_IDS = ["0", "3", "6", "9"]
 
     # 模型路径
-    MODEL_PATH = "depth-anything/DA3NESTED-GIANT-LARGE"
-    # 或使用本地路径:
-    # MODEL_PATH = "/home/zyc/.cache/huggingface/models/nvidia/Cosmos-Guardrail1"
+    # 尝试使用移动后的本地路径
+    MODEL_PATH = str(Path.home() / ".cache/huggingface/hub/models--depth-anything--DA3NESTED-GIANT-LARGE")
+
+    # 如果上述路径不存在，尝试其他位置
+    if not Path(MODEL_PATH).exists():
+        print(f"警告: 本地路径不存在: {MODEL_PATH}")
+        # 尝试从 Hugging Face Hub 下载
+        MODEL_PATH = "depth-anything/DA3NESTED-GIANT-LARGE"
+        print(f"将尝试从 Hugging Face Hub 加载: {MODEL_PATH}")
 
     # 输出目录
     OUTPUT_DIR = Path("./output/real_calibration_inference")
