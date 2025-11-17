@@ -1,0 +1,11 @@
+frame_id: conti308_rightfront
+transform:
+  rotation:
+    x: 0
+    y: 0
+    z: 0.2985023891815198
+    w: 0.9544088870358053
+  translation:
+    x: 0.85
+    y: 3.56
+    z: -0.005

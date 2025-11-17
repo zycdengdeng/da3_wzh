@@ -1,0 +1,18 @@
+header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: novatel
+frame: ENU
+child_frame_id: conti308_rightrear
+transform:
+  rotation:
+    x: 0
+    y: 0
+    z: -0.3821937317649355
+    w: 0.924082221125151
+  translation:
+    x: 0.73
+    y: -0.575
+    z: 0.035

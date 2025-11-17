@@ -1,0 +1,11 @@
+transform:
+  rotation:
+    x: 0.615048
+    y: -0.599328
+    z: 0.350108
+    w: -0.374095
+  translation:
+    x: 2.406541
+    y: 0.058850
+    z: -1.314422
+label: camera

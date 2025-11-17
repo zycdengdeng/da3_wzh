@@ -1,0 +1,11 @@
+frame_id: conti308_leftrear
+transform:
+  rotation:
+    x: 0
+    y: 0
+    z: 0.9224268588483473
+    w: -0.3861718400856944
+  translation:
+    x: -0.73
+    y: -0.575
+    z: 0.035

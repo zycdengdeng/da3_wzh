@@ -1,0 +1,287 @@
+vehicle_name: aiccEER705
+sensors:
+  - name: camera_01
+    type: camera
+    subtype: pinhole
+    mark: 前左下
+    topic: /video0/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_01_intrinsics.yaml
+    extrinsics_path: /home/aicc/Downloads/calibration_tools/CalibrationTools/config/ui/aicc/NoEER705_v2/camera/camera_01_extrinsics.yaml
+  - name: camera_02
+    type: camera
+    subtype: pinhole
+    mark: 前右下
+    topic: /video1/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_02_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_02_extrinsics.yaml
+  - name: camera_03
+    type: camera
+    subtype: pinhole
+    mark: 前左上
+    topic: /video8/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_03_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/02_Tool/00_Cal/CalibrationTools/config/ui/aicc/NoEER705_v3/camera/camera_03_extrinsics.yaml
+  - name: camera_04
+    type: camera
+    subtype: pinhole
+    mark: 前右上
+    topic: /video9/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_04_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/02_Tool/00_Cal/CalibrationTools/config/ui/aicc/NoEER705_v3/camera/camera_04_extrinsics.yaml
+  - name: camera_05
+    type: camera
+    subtype: pinhole
+    mark: 左后下
+    topic: /video10/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_05_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/02_Tool/00_Cal/CalibrationTools/config/ui/aicc/NoEER705_v3/camera/camera_05_extrinsics.yaml
+  - name: camera_06
+    type: camera
+    subtype: pinhole
+    mark: 右后下
+    topic: /video11/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_06_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/02_Tool/00_Cal/CalibrationTools/config/ui/aicc/NoEER705_v3/camera/camera_06_extrinsics.yaml
+  - name: camera_07
+    type: camera
+    subtype: pinhole
+    mark: 后中下
+    topic: /video6/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_07_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/02_Tool/00_Cal/CalibrationTools/config/ui/aicc/NoEER705_v3/camera/camera_07_extrinsics.yaml
+  - name: camera_08
+    type: camera
+    subtype: fisheye
+    mark: 前侧环视
+    topic: /video2/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_08_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_08_extrinsics.yaml
+  - name: camera_09
+    type: camera
+    subtype: fisheye
+    mark: 后侧环视
+    topic: /video3/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_09_intrinsics.yaml
+    extrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_09_extrinsics.yaml
+  - name: camera_10
+    type: camera
+    subtype: fisheye
+    mark: 左侧环视
+    topic: /video4/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_10_intrinsics.yaml
+    extrinsics_path: /home/aicc/Downloads/calibration_tools/CalibrationTools/config/ui/aicc/NoEER705_v2/camera/camera_10_extrinsics.yaml
+  - name: camera_11
+    type: camera
+    subtype: fisheye
+    mark: 右侧环视
+    topic: /video5/compressed
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/camera/camera_11_intrinsics.yaml
+    extrinsics_path: /home/aicc/Downloads/calibration_tools/CalibrationTools/config/ui/aicc/NoEER705_v2/camera/camera_11_extrinsics.yaml
+  - name: lidar_01
+    type: lidar
+    subtype: pandar64
+    mark: 车顶
+    topic: /lidar/main
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: ""
+  - name: lidar_02
+    type: lidar
+    subtype: rsM1
+    mark: 前中上
+    topic: /lidar/middle
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/lidar/lidar_02_extrinsics.yaml
+  - name: radar_01
+    type: radar
+    subtype: ars408
+    mark: 前中
+    topic: /radar/front
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: /home/venus/01_Workspace/00_Git/01_Net/calibration_tool/install/config/ui/aicc/NoEER705_v2/radar/radar_01_extrinsics.yaml
+  - name: radar_02
+    type: radar
+    subtype: ars308
+    mark: 前左
+    topic: /radar/fl
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: ""
+  - name: radar_03
+    type: radar
+    subtype: ars308
+    mark: 前右
+    topic: /radar/fr
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: ""
+  - name: radar_04
+    type: radar
+    subtype: ars308
+    mark: 后左
+    topic: /radar/rl
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: ""
+  - name: radar_05
+    type: radar
+    subtype: ars308
+    mark: 后右
+    topic: /radar/rr
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: ""
+  - name: imu_01
+    type: imu
+    subtype: north
+    mark: 后轴中心
+    topic: /chc/inspva
+    init_value:
+      roll: 0
+      pitch: 0
+      yaw: 0
+      translation:
+        x: 0
+        y: 0
+        z: 0
+    intrinsics_path: ""
+    extrinsics_path: ""
