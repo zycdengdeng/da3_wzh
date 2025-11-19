@@ -31,6 +31,11 @@ CAMERA_IDS = [0, 1, 2, 3, 4]  # Waymo 5个相机
 FRAME_RANGE = (0, 10)  # 推理的帧范围 (start, end)，None表示所有帧
 UNDISTORT_IMAGES = True  # 是否去畸变
 
+# 深度对齐配置
+ALIGN_TO_INPUT_EXT_SCALE = True  # 是否对齐到输入位姿的尺度
+# True: 使用全局scale对齐（默认，适合已知准确尺度的场景）
+# False: 使用模型预测的相对位姿（可能改善多视角衔接）
+
 # 输出配置
 OUTPUT_DIR = Path("output/waymo_inference")
 EXPORT_GLB = True  # 是否导出3D点云
@@ -211,7 +216,8 @@ def main():
             prediction = model.inference(
                 image=images_for_inference,
                 intrinsics=intrinsics,
-                extrinsics=extrinsics
+                extrinsics=extrinsics,
+                align_to_input_ext_scale=ALIGN_TO_INPUT_EXT_SCALE
             )
 
             print(f"  - 推理完成")
