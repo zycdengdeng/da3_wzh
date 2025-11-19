@@ -4,6 +4,19 @@
 
 ---
 
+## ⚡ 环境要求
+
+- **Python 环境**: 需要已安装 `depth_anything_3` 包的 conda/venv 环境
+- **必需依赖**: numpy, opencv-python, pillow
+- **DA3 安装**: `depth_anything_3` 应通过 pip 安装在环境中
+
+**验证安装**:
+```bash
+python -c "from depth_anything_3.api import DepthAnything3; print('✓ DA3 已安装')"
+```
+
+---
+
 ## 📁 数据格式
 
 ### 目录结构
@@ -95,9 +108,14 @@ GLB_NUM_MAX_POINTS = 5_000_000    # 最大点云数量
 ### 3. 运行推理
 
 ```bash
-cd ~/da3_wzh
+cd /home/zyc/Depth-Anything-3  # 或者你的工作目录
 python inference_waymo.py
 ```
+
+**注意**：
+- `inference_waymo.py` 会**自动调用** `parse_waymo_calibration.py` 来解析标定文件
+- **不需要**手动先运行 `parse_waymo_calibration.py`
+- 脚本会在每次推理时自动加载和解析标定参数
 
 ---
 
