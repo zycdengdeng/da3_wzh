@@ -81,13 +81,12 @@ def get_all_frames(images_dir, camera_ids):
     return sorted(frame_ids)
 
 
-def visualize_waymo_frame(images, depth_maps, camera_names, frame_id, save_dir):
+def visualize_waymo_frame(prediction, camera_names, frame_id, save_dir):
     """
     可视化单帧的多相机深度图
 
     Args:
-        images: List of (H, W, 3) RGB images
-        depth_maps: List of (H, W) depth maps
+        prediction: DA3 prediction 对象（包含 processed_images 和 depth）
         camera_names: List of camera names
         frame_id: 帧ID
         save_dir: 保存目录
@@ -95,7 +94,11 @@ def visualize_waymo_frame(images, depth_maps, camera_names, frame_id, save_dir):
     save_dir = Path(save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
 
-    for i, (img, depth, cam_name) in enumerate(zip(images, depth_maps, camera_names)):
+    # 使用 DA3 处理后的图像（与深度图尺寸匹配）
+    processed_images = prediction.processed_images  # (N, H, W, 3) uint8
+    depth_maps = prediction.depth  # (N, H, W)
+
+    for i, (img, depth, cam_name) in enumerate(zip(processed_images, depth_maps, camera_names)):
         # 深度彩色可视化
         depth_normalized = (depth - depth.min()) / (depth.max() - depth.min() + 1e-8)
         depth_colored = cv2.applyColorMap(
@@ -106,7 +109,7 @@ def visualize_waymo_frame(images, depth_maps, camera_names, frame_id, save_dir):
         # 转换为RGB
         depth_colored = cv2.cvtColor(depth_colored, cv2.COLOR_BGR2RGB)
 
-        # 拼接原图和深度图
+        # 拼接原图和深度图（现在尺寸匹配了）
         vis = np.hstack([img, depth_colored])
 
         # 保存
@@ -238,8 +241,7 @@ def main():
 
         # 可视化
         visualize_waymo_frame(
-            images=images_for_inference,
-            depth_maps=prediction.depth,
+            prediction=prediction,
             camera_names=camera_names,
             frame_id=frame_id,
             save_dir=frame_output_dir / "visualizations"
