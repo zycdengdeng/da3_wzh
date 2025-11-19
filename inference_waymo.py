@@ -12,8 +12,16 @@ import numpy as np
 import cv2
 from PIL import Image
 
-# 添加 DA3 到路径
-sys.path.insert(0, str(Path(__file__).parent / "src"))
+# 添加 DA3 到路径（尝试多个可能的位置）
+script_dir = Path(__file__).parent
+possible_paths = [
+    script_dir / "src",           # 如果在 da3_wzh 目录
+    script_dir,                   # 如果在 Depth-Anything-3 目录
+    script_dir.parent / "src",    # 其他可能位置
+]
+for path in possible_paths:
+    if path.exists() and str(path) not in sys.path:
+        sys.path.insert(0, str(path))
 
 from depth_anything_3.dpt import DepthAnything3
 from depth_anything_3.utils.export.glb import export_to_glb
